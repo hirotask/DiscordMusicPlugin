@@ -28,6 +28,7 @@ public class CommandManager {
         addCommand(new Queue());
         addCommand(new Repeat());
         addCommand(new Leave());
+        addCommand(new Auth());
         addCommand(new Help(this)); //helpコマンドは一番最後に加えること
 
     }
