@@ -56,4 +56,9 @@ public class Help implements ICommand {
         return "Show the list with commands in the bot \n" +
                 "Usage: `!help [command]`";
     }
+
+    @Override
+    public List<String> getAliases() {
+        return List.of("commands", "cmds", "commandList");
+    }
 }
