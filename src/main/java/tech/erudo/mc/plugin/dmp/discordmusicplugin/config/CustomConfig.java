@@ -35,13 +35,13 @@ public abstract class CustomConfig {
         this(plugin, "config.yml");
     }
 
-    protected void saveDefaultConfig() {
+    public void saveDefaultConfig() {
         if(!configFile.exists()) {
             plugin.saveResource(this.PATH, false);
         }
     }
 
-    protected void saveConfig() {
+    public void saveConfig() {
         try {
             config.save(configFile);
         } catch (IOException e) {
@@ -49,7 +49,7 @@ public abstract class CustomConfig {
         }
     }
 
-    protected void reload() {
+    public void reload() {
         config = YamlConfiguration.loadConfiguration(configFile);
         InputStream configStream = plugin.getResource(this.PATH);
 

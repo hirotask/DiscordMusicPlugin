@@ -17,7 +17,7 @@ public class Auth implements SubCommand {
                 if(args[0].equals(code)) {
                     player.sendMessage("Auth Complete!!");
 
-                    AuthPlayer authPlayer = new AuthPlayer(player, AuthManager.authCode.get(code));
+                    AuthPlayer authPlayer = new AuthPlayer(player.getUniqueId(), AuthManager.authCode.get(code));
                     AuthManager.authPlayers.add(authPlayer);
                 }
             }

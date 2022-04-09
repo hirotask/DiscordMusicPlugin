@@ -9,6 +9,7 @@ public class DiscordConfig extends CustomConfig {
     public final String token;
     public final String owner_id;
     public final String prefix;
+    private final String guildId;
     private final String channel;
 
 
@@ -18,6 +19,7 @@ public class DiscordConfig extends CustomConfig {
         this.token = this.getConfig().getString("TOKEN");
         this.owner_id = this.getConfig().getString("OWNER_ID");
         this.prefix = this.getConfig().getString("PREFIX");
+        this.guildId = this.getConfig().getString("GUILD_ID");
         this.channel = this.getConfig().getString("BOT_CHANNEL_ID");
 
     }

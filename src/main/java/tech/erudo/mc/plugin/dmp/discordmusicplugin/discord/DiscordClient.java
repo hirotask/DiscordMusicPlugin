@@ -3,6 +3,7 @@ package tech.erudo.mc.plugin.dmp.discordmusicplugin.discord;
 import lombok.Getter;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
+import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.utils.cache.CacheFlag;
 import tech.erudo.mc.plugin.dmp.discordmusicplugin.DiscordMusicAPI;
@@ -26,8 +27,8 @@ public class DiscordClient {
                             GatewayIntent.GUILD_VOICE_STATES
                     )
                     .disableCache(EnumSet.of(
-                            CacheFlag.CLIENT_STATUS,
                             CacheFlag.ACTIVITY,
+                            CacheFlag.CLIENT_STATUS,
                             CacheFlag.EMOTE
                     ))
                     .enableCache(EnumSet.of(
@@ -40,6 +41,11 @@ public class DiscordClient {
         }
 
     }
+
+    public Guild getGuild(String id) {
+        return jda.getGuildById(id);
+    }
+
 
     public boolean isLogin() {
         return jda != null;

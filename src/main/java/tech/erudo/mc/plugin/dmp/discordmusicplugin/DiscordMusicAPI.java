@@ -1,6 +1,7 @@
 package tech.erudo.mc.plugin.dmp.discordmusicplugin;
 
 import lombok.Getter;
+import tech.erudo.mc.plugin.dmp.discordmusicplugin.authentication.AuthManager;
 import tech.erudo.mc.plugin.dmp.discordmusicplugin.config.DataConfig;
 import tech.erudo.mc.plugin.dmp.discordmusicplugin.config.DiscordConfig;
 import tech.erudo.mc.plugin.dmp.discordmusicplugin.config.MyConfig;
