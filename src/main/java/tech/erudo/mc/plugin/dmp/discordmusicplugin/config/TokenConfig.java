@@ -7,12 +7,10 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class TokenConfig extends CustomConfig {
 
     public final String token;
-    public final Long guildId;
 
     public TokenConfig(JavaPlugin plugin) {
         super(plugin, "token.yml");
 
         this.token = this.getConfig().getString("TOKEN");
-        this.guildId = this.getConfig().getLong("guildId");
     }
 }
