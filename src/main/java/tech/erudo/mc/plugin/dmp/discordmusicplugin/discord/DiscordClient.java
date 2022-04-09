@@ -20,8 +20,10 @@ public class DiscordClient {
         } catch (LoginException e) {
             e.printStackTrace();
         }
+    }
 
-
+    public void shutdown() {
+        jda.shutdownNow();
     }
 
 }
