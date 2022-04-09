@@ -17,6 +17,11 @@ public class Ping implements ICommand {
     }
 
     @Override
+    public String getHelp() {
+        return "現在のpingを取得します";
+    }
+
+    @Override
     public String getName() {
         return "ping";
     }

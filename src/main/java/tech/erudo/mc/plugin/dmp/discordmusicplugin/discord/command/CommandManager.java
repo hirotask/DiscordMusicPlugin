@@ -3,6 +3,7 @@ package tech.erudo.mc.plugin.dmp.discordmusicplugin.discord.command;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import tech.erudo.mc.plugin.dmp.discordmusicplugin.DiscordMusicAPI;
 import tech.erudo.mc.plugin.dmp.discordmusicplugin.config.DiscordConfig;
+import tech.erudo.mc.plugin.dmp.discordmusicplugin.discord.command.commands.Help;
 import tech.erudo.mc.plugin.dmp.discordmusicplugin.discord.command.commands.Ping;
 
 import javax.annotation.Nullable;
@@ -17,6 +18,9 @@ public class CommandManager {
 
     public CommandManager() {
         addCommand(new Ping());
+
+        addCommand(new Help(this)); //helpコマンドは一番最後に加えること
+
     }
 
     private void addCommand(ICommand cmd) {
@@ -29,8 +33,12 @@ public class CommandManager {
         commands.add(cmd);
     }
 
+    public List<ICommand> getCommands() {
+        return commands;
+    }
+
     @Nullable
-    private ICommand getCommand(String search) {
+    public ICommand getCommand(String search) {
         String searchLower = search.toLowerCase();
 
         for(ICommand cmd : this.commands) {
