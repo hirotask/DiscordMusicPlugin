@@ -1,0 +1,5 @@
+name: DiscordMusicPlugin
+version: '${version}'
+main: tech.erudo.mc.plugin.dmp.discordmusicplugin.DiscordMusicPlugin
+api-version: 1.17
+website: https://blog.erudo.tech

@@ -1,0 +1,29 @@
+plugins {
+    id 'java'
+}
+
+group = 'tech.erudo.mc.plugin.dmp'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    maven {
+        url = uri("https://papermc.io/repo/repository/maven-public/")
+    }
+}
+
+dependencies {
+    compileOnly("io.papermc.paper:paper-api:1.17.1-R0.1-SNAPSHOT")
+}
+
+java {
+    toolchain.languageVersion.set(JavaLanguageVersion.of(16))
+}
+
+processResources {
+    def props = [version: version]
+    inputs.properties props
+    filteringCharset 'UTF-8'
+    filesMatching('plugin.yml') {
+        expand props
+    }
+}
