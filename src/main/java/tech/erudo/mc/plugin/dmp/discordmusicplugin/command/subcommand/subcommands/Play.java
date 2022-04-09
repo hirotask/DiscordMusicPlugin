@@ -25,7 +25,7 @@ public class Play implements SubCommand {
                 return;
             }
 
-            final String channelStr = DiscordMusicAPI.getInstance().getConfig().getChannel();
+            final String channelStr = DiscordMusicAPI.getInstance().getDiscordConfig().getChannel();
 
             final Member member = authPlayer.getMember();
             final GuildVoiceState memberVoiceState = member.getVoiceState();
@@ -40,7 +40,6 @@ public class Play implements SubCommand {
                 player.sendMessage("設定したチャンネルは存在しません");
                 return;
             }
-
 
             String link = args[0];
 

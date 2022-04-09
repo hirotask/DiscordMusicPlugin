@@ -14,6 +14,10 @@ public class AuthManager {
 
     public static List<AuthPlayer> authPlayers = new ArrayList<>();
 
+    public static void init() {
+        
+    }
+
     public static String generateAuthCode(Member member) {
         Random rand = new Random();
         String code = String.format("%04d", rand.nextInt(10000));

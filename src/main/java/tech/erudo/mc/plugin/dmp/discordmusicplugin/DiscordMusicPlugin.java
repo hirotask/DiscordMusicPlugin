@@ -9,6 +9,7 @@ public final class DiscordMusicPlugin extends JavaPlugin {
     public void onEnable() {
         DiscordMusicAPI.setInstance(this);
 
+
         this.getServer().getPluginCommand(CommandManager.mainCommand).setExecutor(new CommandManager());
     }
 

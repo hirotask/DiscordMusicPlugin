@@ -1,5 +1,6 @@
 package tech.erudo.mc.plugin.dmp.discordmusicplugin.discord;
 
+import lombok.Getter;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.requests.GatewayIntent;
@@ -13,6 +14,7 @@ public class DiscordClient {
 
     public static final String BOT_NAME = "DiscordMusicBot";
 
+    @Getter
     private JDA jda;
 
     public DiscordClient(String token) {

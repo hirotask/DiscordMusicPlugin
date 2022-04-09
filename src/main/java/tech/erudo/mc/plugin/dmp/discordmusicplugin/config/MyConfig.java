@@ -7,12 +7,13 @@ import org.bukkit.plugin.java.JavaPlugin;
 @Getter
 public class MyConfig extends CustomConfig {
 
-    private final String channel;
+    private boolean usingDB;
+
 
     public MyConfig(JavaPlugin plugin) {
         super(plugin);
 
-        this.channel = this.getConfig().getString("BOT_CHANNEL_ID");
+        this.usingDB = this.getConfig().getBoolean("USING_DB");
     }
 
 

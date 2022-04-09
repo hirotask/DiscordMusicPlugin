@@ -9,7 +9,8 @@ public class DiscordConfig extends CustomConfig {
     public final String token;
     public final String owner_id;
     public final String prefix;
-    private boolean usingDB;
+    private final String channel;
+
 
     public DiscordConfig(JavaPlugin plugin) {
         super(plugin, "discord.yml");
@@ -17,7 +18,7 @@ public class DiscordConfig extends CustomConfig {
         this.token = this.getConfig().getString("TOKEN");
         this.owner_id = this.getConfig().getString("OWNER_ID");
         this.prefix = this.getConfig().getString("PREFIX");
-        this.usingDB = this.getConfig().getBoolean("USING_DB");
+        this.channel = this.getConfig().getString("BOT_CHANNEL_ID");
 
     }
 }
