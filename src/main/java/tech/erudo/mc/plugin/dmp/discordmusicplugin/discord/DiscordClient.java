@@ -2,9 +2,12 @@ package tech.erudo.mc.plugin.dmp.discordmusicplugin.discord;
 
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
+import net.dv8tion.jda.api.requests.GatewayIntent;
+import net.dv8tion.jda.api.utils.cache.CacheFlag;
 import tech.erudo.mc.plugin.dmp.discordmusicplugin.DiscordMusicAPI;
 
 import javax.security.auth.login.LoginException;
+import java.util.EnumSet;
 
 public class DiscordClient {
 
@@ -15,7 +18,19 @@ public class DiscordClient {
     public DiscordClient(String token) {
         try {
             jda = JDABuilder
-                    .createDefault(token)
+                    .createDefault(
+                            token,
+                            GatewayIntent.GUILD_MESSAGES,
+                            GatewayIntent.GUILD_VOICE_STATES
+                    )
+                    .disableCache(EnumSet.of(
+                            CacheFlag.CLIENT_STATUS,
+                            CacheFlag.ACTIVITY,
+                            CacheFlag.EMOTE
+                    ))
+                    .enableCache(EnumSet.of(
+                            CacheFlag.VOICE_STATE
+                    ))
                     .addEventListeners(new DiscordListener())
                     .build();
         } catch (LoginException e) {
