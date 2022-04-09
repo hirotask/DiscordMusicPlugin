@@ -3,7 +3,6 @@ package tech.erudo.mc.plugin.dmp.discordmusicplugin.command.subcommand.subcomman
 import org.bukkit.entity.Player;
 import tech.erudo.mc.plugin.dmp.discordmusicplugin.command.CommandManager;
 import tech.erudo.mc.plugin.dmp.discordmusicplugin.command.subcommand.SubCommand;
-import tech.erudo.mc.plugin.dmp.discordmusicplugin.discord.command.ICommand;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -39,6 +39,10 @@ public class DiscordClient {
 
     }
 
+    public boolean isLogin() {
+        return jda != null;
+    }
+
     public void shutdown() {
         jda.shutdownNow();
     }

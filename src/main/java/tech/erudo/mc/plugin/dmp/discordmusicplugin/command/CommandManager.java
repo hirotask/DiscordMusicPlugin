@@ -7,7 +7,9 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import tech.erudo.mc.plugin.dmp.discordmusicplugin.command.subcommand.SubCommand;
+import tech.erudo.mc.plugin.dmp.discordmusicplugin.command.subcommand.subcommands.Auth;
 import tech.erudo.mc.plugin.dmp.discordmusicplugin.command.subcommand.subcommands.Help;
+import tech.erudo.mc.plugin.dmp.discordmusicplugin.command.subcommand.subcommands.Play;
 import tech.erudo.mc.plugin.dmp.discordmusicplugin.discord.command.ICommand;
 
 import java.util.*;
@@ -23,6 +25,8 @@ public class CommandManager implements CommandExecutor {
     }
 
     private void setup() {
+        this.commands.add(new Auth());
+        this.commands.add(new Play());
         this.commands.add(new Help(this));
     }
 
