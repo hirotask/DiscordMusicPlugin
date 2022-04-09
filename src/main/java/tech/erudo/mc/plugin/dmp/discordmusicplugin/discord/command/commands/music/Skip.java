@@ -1,4 +1,4 @@
-package tech.erudo.mc.plugin.dmp.discordmusicplugin.discord.command.commands;
+package tech.erudo.mc.plugin.dmp.discordmusicplugin.discord.command.commands.music;
 
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import net.dv8tion.jda.api.entities.GuildVoiceState;
@@ -22,14 +22,7 @@ public class Skip implements ICommand {
         final GuildVoiceState memberVoiceState = member.getVoiceState();
 
         if(!selfVoiceState.inVoiceChannel()) {
-            if(memberVoiceState.inVoiceChannel()) {
-                final AudioManager audioManager = ctx.getGuild().getAudioManager();
-                final VoiceChannel memberChannel = memberVoiceState.getChannel();
-
-                audioManager.openAudioConnection(memberChannel);
-                channel.sendMessageFormat("Connecting to `\uD83D\uDD0A %s`", memberChannel.getName()).queue();
-
-            } else {
+            if(!memberVoiceState.inVoiceChannel()) {
                 channel.sendMessage("You need to be in a voice channel for this command to work").queue();
                 return;
             }

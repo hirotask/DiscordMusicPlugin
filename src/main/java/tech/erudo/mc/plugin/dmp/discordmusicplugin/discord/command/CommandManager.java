@@ -4,6 +4,7 @@ import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import tech.erudo.mc.plugin.dmp.discordmusicplugin.DiscordMusicAPI;
 import tech.erudo.mc.plugin.dmp.discordmusicplugin.config.DiscordConfig;
 import tech.erudo.mc.plugin.dmp.discordmusicplugin.discord.command.commands.*;
+import tech.erudo.mc.plugin.dmp.discordmusicplugin.discord.command.commands.music.*;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -18,11 +19,15 @@ public class CommandManager {
     public CommandManager() {
         addCommand(new Ping());
         addCommand(new Kick());
+        //music commands
         addCommand(new Join());
         addCommand(new Play());
         addCommand(new Stop());
         addCommand(new Skip());
         addCommand(new NowPlaying());
+        addCommand(new Queue());
+        addCommand(new Repeat());
+        addCommand(new Leave());
         addCommand(new Help(this)); //helpコマンドは一番最後に加えること
 
     }

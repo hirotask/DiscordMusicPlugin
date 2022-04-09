@@ -1,4 +1,4 @@
-package tech.erudo.mc.plugin.dmp.discordmusicplugin.discord.command.commands;
+package tech.erudo.mc.plugin.dmp.discordmusicplugin.discord.command.commands.music;
 
 import net.dv8tion.jda.api.entities.GuildVoiceState;
 import net.dv8tion.jda.api.entities.Member;

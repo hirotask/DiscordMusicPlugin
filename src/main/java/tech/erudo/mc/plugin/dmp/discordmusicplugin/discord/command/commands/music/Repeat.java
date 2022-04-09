@@ -1,8 +1,5 @@
-package tech.erudo.mc.plugin.dmp.discordmusicplugin.discord.command.commands;
+package tech.erudo.mc.plugin.dmp.discordmusicplugin.discord.command.commands.music;
 
-import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
-import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
-import com.sedmelluq.discord.lavaplayer.track.AudioTrackInfo;
 import net.dv8tion.jda.api.entities.GuildVoiceState;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.TextChannel;
@@ -13,7 +10,8 @@ import tech.erudo.mc.plugin.dmp.discordmusicplugin.discord.command.ICommand;
 import tech.erudo.mc.plugin.dmp.discordmusicplugin.discord.lavaplayer.GuildMusicManager;
 import tech.erudo.mc.plugin.dmp.discordmusicplugin.discord.lavaplayer.PlayerManager;
 
-public class NowPlaying implements ICommand {
+public class Repeat implements ICommand {
+
     @Override
     public void handle(CommandContext ctx) {
         final TextChannel channel = ctx.getChannel();
@@ -24,14 +22,7 @@ public class NowPlaying implements ICommand {
         final GuildVoiceState memberVoiceState = member.getVoiceState();
 
         if(!selfVoiceState.inVoiceChannel()) {
-            if(memberVoiceState.inVoiceChannel()) {
-                final AudioManager audioManager = ctx.getGuild().getAudioManager();
-                final VoiceChannel memberChannel = memberVoiceState.getChannel();
-
-                audioManager.openAudioConnection(memberChannel);
-                channel.sendMessageFormat("Connecting to `\uD83D\uDD0A %s`", memberChannel.getName()).queue();
-
-            } else {
+            if(!memberVoiceState.inVoiceChannel()) {
                 channel.sendMessage("You need to be in a voice channel for this command to work").queue();
                 return;
             }
@@ -44,25 +35,21 @@ public class NowPlaying implements ICommand {
         }
 
         final GuildMusicManager musicManager = PlayerManager.getInstance().getMusicManager(ctx.getGuild());
-        final AudioPlayer audioPlayer = musicManager.audioPlayer;
-        final AudioTrack track = audioPlayer.getPlayingTrack();
+        final boolean newRepeating = musicManager.scheduler.repeating;
 
-        if(track == null) {
-            channel.sendMessage("There is no track playing currently").queue();
-            return;
-        }
+        musicManager.scheduler.repeating = newRepeating;
 
-        final AudioTrackInfo info = track.getInfo();
-        channel.sendMessageFormat("Now Playing `%s` by `%s` (Link: <%s>)", info.title, info.author, info.uri).queue();
+        channel.sendMessageFormat("The player has been set to **%s**", newRepeating ? "repeating" : "not repeating").queue();
+
     }
 
     @Override
     public String getName() {
-        return "nowplaying";
+        return "repeat";
     }
 
     @Override
     public String getHelp() {
-        return "shows the currently playing song";
+        return "loops the current song";
     }
 }

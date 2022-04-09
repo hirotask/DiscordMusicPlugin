@@ -1,17 +1,13 @@
-package tech.erudo.mc.plugin.dmp.discordmusicplugin.discord.command.commands;
+package tech.erudo.mc.plugin.dmp.discordmusicplugin.discord.command.commands.music;
 
-import net.dv8tion.jda.api.entities.GuildVoiceState;
-import net.dv8tion.jda.api.entities.Member;
-import net.dv8tion.jda.api.entities.TextChannel;
-import net.dv8tion.jda.api.entities.VoiceChannel;
+import net.dv8tion.jda.api.entities.*;
 import net.dv8tion.jda.api.managers.AudioManager;
 import tech.erudo.mc.plugin.dmp.discordmusicplugin.discord.command.CommandContext;
 import tech.erudo.mc.plugin.dmp.discordmusicplugin.discord.command.ICommand;
 import tech.erudo.mc.plugin.dmp.discordmusicplugin.discord.lavaplayer.GuildMusicManager;
 import tech.erudo.mc.plugin.dmp.discordmusicplugin.discord.lavaplayer.PlayerManager;
 
-public class Stop implements ICommand {
-    @SuppressWarnings("ConstantConditions")
+public class Leave implements ICommand {
     @Override
     public void handle(CommandContext ctx) {
         final TextChannel channel = ctx.getChannel();
@@ -22,18 +18,10 @@ public class Stop implements ICommand {
         final GuildVoiceState memberVoiceState = member.getVoiceState();
 
         if(!selfVoiceState.inVoiceChannel()) {
-            if(memberVoiceState.inVoiceChannel()) {
-                final AudioManager audioManager = ctx.getGuild().getAudioManager();
-                final VoiceChannel memberChannel = memberVoiceState.getChannel();
-
-                audioManager.openAudioConnection(memberChannel);
-                channel.sendMessageFormat("Connecting to `\uD83D\uDD0A %s`", memberChannel.getName()).queue();
-
-            } else {
+            if(!memberVoiceState.inVoiceChannel()) {
                 channel.sendMessage("You need to be in a voice channel for this command to work").queue();
                 return;
             }
-
         } else {
             if(!memberVoiceState.getChannel().equals(selfVoiceState.getChannel())) {
                 channel.sendMessage("You need to be in the same voice channel as me for this to work").queue();
@@ -41,21 +29,27 @@ public class Stop implements ICommand {
             }
         }
 
-        final GuildMusicManager musicManager = PlayerManager.getInstance().getMusicManager(ctx.getGuild());
+        final Guild guild = ctx.getGuild();
 
-        musicManager.scheduler.player.stopTrack();
+        final GuildMusicManager musicManager = PlayerManager.getInstance().getMusicManager(guild);
+
+        musicManager.scheduler.repeating = false;
         musicManager.scheduler.queue.clear();
+        musicManager.audioPlayer.stopTrack();
 
-        channel.sendMessage("The player has been stopped and the queue has been cleared").queue();
+        final AudioManager audioManager = ctx.getGuild().getAudioManager();
+
+        audioManager.closeAudioConnection();
+        channel.sendMessage("I have left the voice channel").queue();
     }
 
     @Override
     public String getName() {
-        return "stop";
+        return "leave";
     }
 
     @Override
     public String getHelp() {
-        return "Stop the current song and clears the queue";
+        return "leave the voice channel that the bot is in";
     }
 }
