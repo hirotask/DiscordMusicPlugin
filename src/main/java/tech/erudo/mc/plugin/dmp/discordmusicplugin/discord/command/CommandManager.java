@@ -20,6 +20,7 @@ public class CommandManager {
         addCommand(new Kick());
         addCommand(new Join());
         addCommand(new Play());
+        addCommand(new Stop());
         addCommand(new Help(this)); //helpコマンドは一番最後に加えること
 
     }
