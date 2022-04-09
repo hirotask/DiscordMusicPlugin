@@ -2,6 +2,7 @@ package tech.erudo.mc.plugin.dmp.discordmusicplugin.discord;
 
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
+import tech.erudo.mc.plugin.dmp.discordmusicplugin.DiscordMusicAPI;
 
 import javax.security.auth.login.LoginException;
 
@@ -20,6 +21,7 @@ public class DiscordClient {
         } catch (LoginException e) {
             e.printStackTrace();
         }
+
     }
 
     public void shutdown() {

@@ -9,6 +9,7 @@ version = '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
+    jcenter()
     maven {
         url = uri("https://papermc.io/repo/repository/maven-public/")
     }
@@ -31,12 +32,16 @@ dependencies {
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.22'
 
     implementation 'net.dv8tion:JDA:4.3.0_277'
+
+    implementation 'com.jagrosh:jda-utilities:3.0.1'
+
+    implementation 'me.duncte123:botCommons:1.0.45'
 }
 
 shadowJar {
     dependencies {
-        exclude(dependency('io.papermc.paper:paper-api:.*'))
-        exclude(dependency('org.projectlombok:lombok:.*'))
+        exclude(dependency('io.papermc.paper:paper-api:*'))
+        exclude(dependency('org.projectlombok:lombok:*'))
     }
 }
 

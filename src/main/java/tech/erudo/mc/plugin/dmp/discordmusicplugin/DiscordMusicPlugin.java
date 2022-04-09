@@ -6,17 +6,14 @@ import tech.erudo.mc.plugin.dmp.discordmusicplugin.discord.DiscordClient;
 
 public final class DiscordMusicPlugin extends JavaPlugin {
 
-    private DiscordClient client;
-
     @Override
     public void onEnable() {
-        DiscordConfig token = new DiscordConfig(this);
-        client = new DiscordClient(token.getToken());
-
+        DiscordMusicAPI.setInstance(this);
     }
 
     @Override
     public void onDisable() {
-        client.shutdown();
+        DiscordMusicAPI.getInstance().getClient().shutdown();
+
     }
 }
