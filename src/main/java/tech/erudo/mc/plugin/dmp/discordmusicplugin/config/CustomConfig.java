@@ -21,7 +21,7 @@ public abstract class CustomConfig {
 
     private File configFile;
 
-    protected CustomConfig(JavaPlugin plugin, String path) {
+    public CustomConfig(JavaPlugin plugin, String path) {
         this.plugin = plugin;
         this.PATH = path;
 
@@ -31,7 +31,7 @@ public abstract class CustomConfig {
         this.reload();
     }
 
-    protected CustomConfig(JavaPlugin plugin) {
+    public CustomConfig(JavaPlugin plugin) {
         this(plugin, "config.yml");
     }
 

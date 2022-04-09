@@ -15,6 +15,5 @@ public final class DiscordMusicPlugin extends JavaPlugin {
     @Override
     public void onDisable() {
         DiscordMusicAPI.getInstance().getClient().shutdown();
-
     }
 }

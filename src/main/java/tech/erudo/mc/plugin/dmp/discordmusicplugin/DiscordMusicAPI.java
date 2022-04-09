@@ -1,6 +1,7 @@
 package tech.erudo.mc.plugin.dmp.discordmusicplugin;
 
 import lombok.Getter;
+import tech.erudo.mc.plugin.dmp.discordmusicplugin.config.DataConfig;
 import tech.erudo.mc.plugin.dmp.discordmusicplugin.config.DiscordConfig;
 import tech.erudo.mc.plugin.dmp.discordmusicplugin.config.MyConfig;
 import tech.erudo.mc.plugin.dmp.discordmusicplugin.discord.DiscordClient;
@@ -13,6 +14,7 @@ public enum DiscordMusicAPI {
 
     private DiscordConfig discordConfig;
     private MyConfig myConfig;
+    private DataConfig dataConfig;
 
     private DiscordClient client;
 
@@ -33,6 +35,10 @@ public enum DiscordMusicAPI {
             INSTANCE.myConfig = new MyConfig(INSTANCE.plugin);
         }
 
+        if(INSTANCE.dataConfig == null) {
+            INSTANCE.dataConfig = new DataConfig(INSTANCE.plugin);
+        }
+
         if(INSTANCE.client == null) {
             INSTANCE.client = new DiscordClient(INSTANCE.discordConfig.getToken());
         }
@@ -45,6 +51,10 @@ public enum DiscordMusicAPI {
 
     public MyConfig getConfig() {
         return INSTANCE.myConfig;
+    }
+
+    public DataConfig getDataConfig() {
+        return INSTANCE.dataConfig;
     }
 
     public DiscordConfig getDiscordConfig() {

@@ -7,7 +7,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 @Getter
 public class MyConfig extends CustomConfig {
 
-    private String channel;
+    private final String channel;
 
     public MyConfig(JavaPlugin plugin) {
         super(plugin);
